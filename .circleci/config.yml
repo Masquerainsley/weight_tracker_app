@@ -6,4 +6,10 @@ jobs:
       - image: circleci/python:3.6.2-stretch-browsers
     steps:
       - checkout
+      - run:
+        command: |
+          sudo pip3 install virtenv
+          python3 -m venv web_env
+          source web_env/bin/activate
+          pip3 install -r requirements.txt
       - run: python eb-flask/application.py

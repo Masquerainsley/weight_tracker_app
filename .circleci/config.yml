@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/weight_tracker/weight_tracker_appdea
+    working_directory: ~/weight_tracker/weight_tracker_app
     docker:
       - image: circleci/python:3.6.2-stretch-browsers
     steps:
@@ -15,4 +15,5 @@ jobs:
       - run: 
           command: |
             source web_env/bin/activate
-            python3 eb-flask/application.py
+            python3 -m unittest tests.py
+    

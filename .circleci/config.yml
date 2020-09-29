@@ -1,5 +1,20 @@
 version: 2
 jobs:
+    plan-apply:
+        working_directory: ~/weight_tracker/weight_tracker_app/infrastructure
+        docker:
+          - image: hashicorp/terraform:light
+        steps:
+          - checkout
+          - run:
+              name: terraform init & plan
+              command: |
+                terraform init -input=false
+                terraform plan -out tfapply
+          - persist_to_workspace:
+              root: .
+              paths:
+                - .
   build:
     working_directory: ~/weight_tracker/weight_tracker_app
     docker:

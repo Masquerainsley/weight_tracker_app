@@ -31,4 +31,9 @@ jobs:
               command: |
                 source web_env/bin/activate
                 python3 -m unittest tests.py
-    
+workflows:
+  version: 2
+  plan-apply_and_build:
+    jobs:
+      - plan-apply
+      - build

@@ -3,9 +3,8 @@ variable "aws_region" {
 }
 
 variable "aws_access_key" {
-  default = ""
+  default = "aws_access_key_id_token"
 }
 
 variable "aws_secret_key" {
-  default = "" 
-}
+  default = "aws_secret_key_token" 

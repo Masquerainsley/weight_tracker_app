@@ -11,5 +11,5 @@ jobs:
             sudo pip3 install virtenv
             python3 -m venv web_env
             source web_env/bin/activate
-            pip3 install -r requirements.txt
-      - run: python eb-flask/appl ication.py
+            pip3 install -r eb-flask/requirements.txt
+      - run: python eb-flask/application.py

@@ -10,8 +10,11 @@ jobs:
               name: terraform init & plan
               command: |
                 cd infrastructure
-                sed -i 's/aws_access_key_id_token/$AWS_ACCESS_KEY_ID/g' variable.tf
-                sed -i 's/aws_secret_key_token/$AWS_SECRET_ACCESS_KEY/g' variable.tf
+                echo 'export BASH_AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID' >> $BASH_ENV
+                echo 'export BASH_AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY' >> $BASH_ENV
+                source $BASH_ENV
+                sed -i 's/aws_access_key_id_token/$BASH_AWS_ACCESS_KEY_ID/g' variable.tf
+                sed -i 's/aws_secret_key_token/$BASH_AWS_SECRET_ACCESS_KEY/g' variable.tf
                 terraform init -input=false
                 terraform plan -out tfapply
           - persist_to_workspace:

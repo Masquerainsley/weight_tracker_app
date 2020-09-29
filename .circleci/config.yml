@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/weight_tracker/weight_tracker_app
+    working_directory: ~/weight_tracker/weight_tracker_app/eb-flask
     docker:
       - image: circleci/python:3.6.2-stretch-browsers
     steps:

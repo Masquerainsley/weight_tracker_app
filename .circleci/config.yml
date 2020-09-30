@@ -20,7 +20,21 @@ jobs:
           - persist_to_workspace:
               root: .
               paths:
-                - .
+                - .       
+    apply:
+        docker:
+          - image: hashicorp/terraform:light
+        steps:
+        - attach_workspace:
+            at: .
+        - run:
+            name: terraform
+            command: |
+              terraform apply -auto-approve tfapply
+        - persist_to_workspace:
+            root: .
+            paths:
+             - .       
     build:
         working_directory: ~/weight_tracker/weight_tracker_app
         docker:
@@ -42,4 +56,10 @@ workflows:
   plan-apply_and_build:
     jobs:
       - plan-apply
-      
+      - hold-apply:
+        type: approval
+        requires:
+          - plan-apply
+      - apply:
+        requires:
+          - hold-apply

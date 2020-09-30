@@ -51,15 +51,16 @@ jobs:
               command: |
                 source web_env/bin/activate
                 python3 -m unittest tests.py
+
 workflows:
   version: 2
-  plan-apply_and_build:
+  plan_approve_apply:
     jobs:
       - plan-apply
       - hold-apply:
-        type: approval
-        requires:
-          - plan-apply
+          type: approval
+          requires:
+            - plan-apply
       - apply:
-        requires:
-          - hold-apply
+          requires:
+            - hold-apply

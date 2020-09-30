@@ -42,4 +42,4 @@ workflows:
   plan-apply_and_build:
     jobs:
       - plan-apply
-      - build
+      

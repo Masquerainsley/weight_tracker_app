@@ -8,3 +8,4 @@ variable "aws_access_key" {
 
 variable "aws_secret_key" {
   default = "aws_secret_key_token" 
+}

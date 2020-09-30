@@ -15,7 +15,7 @@ resource "aws_elastic_beanstalk_environment" "weight_tracker_env" {
 }
 
 resource "aws_s3_bucket" "b" {
-  bucket = "weight_tracker_app_bucket"
+  bucket = "weight-tracker-app-bucket"
   acl    = "private"
 
   tags = {
